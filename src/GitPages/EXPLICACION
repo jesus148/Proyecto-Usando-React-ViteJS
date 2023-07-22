@@ -23,9 +23,12 @@ Antes de comenzar a describir los pasos; debes tener en cuenta que necesitas ten
 
 
 1. primero cierra tu app osea tu servidor con control + C en la consola
+    - en la consola o el cmd 
+     -  npm run build (comando)
 
 2. esto genera para nuestro en produccion , osea convierte todo nuestro codigo css, js .etc en archivos finales
-    dirigite al dis > assets para ver los files finales
+osea de todo el codigo de mi aplicacion lo comprime en la carpeta dist (solo eso subira a produccion solo en pag estaticas)
+    dirigite al dis > assets para ver los files finales (osea ha creado la carpeta dist)
 
 3. como son archvios estaticos debe desplegarse a un hosting en este caso sera gitPages     
 
@@ -36,3 +39,96 @@ Antes de comenzar a describir los pasos; debes tener en cuenta que necesitas ten
 
 6. Importante primero debes subir  a tu github osea crear 1 repositorio para ese proyecto
 ose subir todo este codigo de este proyecto en el repositorio mio
+
+7. luego ya sea en la consola de gitbush o vsocde entrar a esta carpeta con vitejs
+   recordar que este protecto no tiene nada de git por ese creamos desde cero
+   debes guiarste de la guia al crear guia o command line al crear el repositorio
+   - git init (ejecuta este comando)
+   - git add . (ejecuta esto)
+   -git commit -m "first Commit" (subir los commits)
+   - git remote add origin https://github.com/jesus148/Proyecto-Usando-React-ViteJS.git (enlazmos con el repo url)
+   -git push origin master (con eso sube todo el codigo)
+
+
+USANDO GITPAGES------------------
+
+8. luego de subir todo nuestro codigo al repositroio 
+dirigete https://www.npmjs.com/package/gh-pages 
+o buscar github pages npm
+     - esto ayuda a desplegar la aplicacion que ya esta en el github basicamente son comandos
+     osea son modulos que hace + facil el trabajo de subir o desplegar son como modulos 
+     2 FORMA (AVERIGUAR +)
+     otra forma de subir mediante gitpages es conifgurando como el netlify 
+
+
+9. iniciar con l 1 comando ya sea en la consola de vscode o el cmd
+  - npm install gh-pages --save-dev  (poner consola  , esto instala un paqete en package.json)
+  - luego dirigite package.json(final de la estructura)
+  -    "scripts": {
+       "dev": "vite",
+       "build": "vite build",
+       "preview": "vite preview",
+       "deploy": "gh-pages -d dist"(agregaras esto )recordar que dist es la carpeta creado con npm run build)
+       },
+
+
+10. como estamos usando vitejs (esta herrmienta de fronten tiene una herramienta para poder desplegar hacia gitpages)
+    - buscar en google(vitejs gh pages)
+    - o redirigite aqui (https://vitejs.dev/guide/static-deploy.html) 
+        - ahi buscar deplying a static site (ver lado izquierdo)
+        - donde dice on this page lyego  situate o buscar   github pages( lado derecho )
+
+
+    -- encontras esto 
+    Set the correct base in vite.config.js.
+
+-- esto para el deploy del perfil de tu git
+If you are deploying to https://<USERNAME>.github.io/, you can omit base as it defaults to '/'.
+
+--deploy a traves de un repositorio 
+If you are deploying to https://<USERNAME>.github.io/<REPO>/, for example your repository is at https://github.com/<USERNAME>/<REPO>, then set base to '/<REPO>/'.
+
+
+
+11. luego dirigite a vite.config.js
+   export default defineConfig({
+   plugins: [react()],
+   base : '/Proyecto-Usando-React-ViteJS/' (esto le agregas es la base no el url de tu repo)
+   })
+
+
+  como saber la base :
+  url de repo 
+  https://github.com/jesus148/Proyecto-Usando-React-ViteJS.git
+       - la base seria /Proyecto-Usando-React-ViteJS
+       osea el nombre del repositorio
+       o tambien puedes poner toda la URL (creo que es mejor)
+
+
+12. dirigite a tu github la pagina de tu repositorio qu quieres subir
+   -en settings
+   - pages > github Acctions(beta)
+   - github pages jekyll (configure) dar clikc ahi   
+   - saldra bastante codigo todo ese codigo debe remplazarse   
+   - con este codigo copia todo eso y ponerlo 
+     ir a esta url (https://vitejs.dev/guide/static-deploy.html#github-pages)
+       donde dice # Simple workflow for deploying static content to GitHub Pages
+                   .
+                   .
+                   . etc     
+    - luego debes guardas los cambios a traves de 1 commit
+       commit changes                
+
+ 13. te saldra el commit realizado
+     ademas te mostrara lo qu ehas añadido 
+      saldra la carpeta > workflows      
+      jekyll-gh-pages.yml (dar clik ahi)
+
+14.debemos modificar ese archivo poner edit 
+      - y cambiar la rama en ciertos casos podria ser main o master ( debes ver con el gitbush o tambien con el vscode 
+      abajo del icono de configuracion)
+
+      -  push:
+      branches: ['master']  (hemos cambiado por master en este caso)
+
+      - luego hacer 1 commit para guardar cambios 
