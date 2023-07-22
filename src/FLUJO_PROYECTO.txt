@@ -1,0 +1,14 @@
+
+
+
+MAIN
+   TASKCONTEXT(sera el provider como una capa) (ESTARA tasks.js[{},{}] ,  createTask() , deleteTask(), osea estara toda la logica )
+        App (componente principal)n renderiza a 
+              TaskForm 
+                    cuando crear task le pedira al TASKCONTEXT
+              TaskList
+                para listar los tasks le pedira al TASKCONTEXT
+                   TaskCard
+                     le pedira al TASKCONTEXT el deleteTask
+           
+             

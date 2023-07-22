@@ -1,0 +1,9 @@
+
+
+
+
+PUEDES MOVER LOS ARCHIVOS DE COMPONENTES EN ESTA CARPETA COMPONENTES POR QUE SIEMPRE HABRAS + COMPONENTES 
+
+
+
+- SOLO MUEVE el componente dentro de la carpeta y update las importaciones 

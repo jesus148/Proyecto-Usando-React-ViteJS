@@ -1,0 +1,38 @@
+
+
+OSEA HACIENDO DEPLOY
+
+
+
+GITHUB PAGES (DEFINICION)
+
+¿Qué es GitHub Pages?
+GitHub Pages es un servicio de alojamiento u hospedaje web gratuito disponibilizado por GitHub. Este servicio nos permite alojar solo páginas web estáticas.
+
+Observación: Cabe señalar que un hospedaje web es el lugar o espacio que tendrá nuestra página web en internet y las páginas estáticas son, en su mayoria informativas haciendo uso de HTML y CSS. Es decir, paginas web dinámicas que incluye aspectos caracterizados por la interactividad y la funcionalidad a través de los lenguajes de programación (tales como: PHP, Java, Python, entre otros) y las bases de datos (como: MySql, Sql Server, MongoDb, etc.), no podran ser ejecutadas.
+
+¿Cómo activar tu proyecto en GitHub Pages?
+Antes de comenzar a describir los pasos; debes tener en cuenta que necesitas tener tu repositorio ya creado en tu perfil de GitHub, en caso que aún no lo tengas y no sepas como hacerlo, te dejo a continuación una documentacón del propio GitHub con el paso a paso, además de un video que te guiará a como subir tu proyecto de un repositorio local a un repositortio remoto en GitHub.
+
+
+
+
+
+
+
+
+
+1. primero cierra tu app osea tu servidor con control + C en la consola
+
+2. esto genera para nuestro en produccion , osea convierte todo nuestro codigo css, js .etc en archivos finales
+    dirigite al dis > assets para ver los files finales
+
+3. como son archvios estaticos debe desplegarse a un hosting en este caso sera gitPages     
+
+4. haremos el despliege de la aplicacion
+
+5. https://pages.github.com/ (enntrar a ese link o googlear gitpages)
+
+
+6. Importante primero debes subir  a tu github osea crear 1 repositorio para ese proyecto
+ose subir todo este codigo de este proyecto en el repositorio mio

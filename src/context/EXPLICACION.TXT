@@ -1,0 +1,200 @@
+
+
+CREAR CONTEXTO 
+
+sifnifica que este componente tendra o sera el padre de todos los componentes incluido el App.jsx
+osea todos los componentes tendra que solo recurrir aca.
+
+
+
+
+
+//=========================================================================================================================
+Pasar datos profundamente con contexto (  Passing Data Deeply with Context)
+URL (https://react.dev/learn/passing-data-deeply-with-context#step-3-provide-the-context)
+
+Pasar datos profundamente con contexto
+Por lo general, pasará información de un componente principal a un componente secundario a través de accesorios. Pero pasar accesorios puede volverse detallado e inconveniente si tiene que pasarlos a través de muchos componentes en el medio, o si muchos componentes en su aplicación necesitan la misma información. El contexto permite que el componente principal haga que cierta información esté disponible para cualquier componente en el árbol debajo de él, sin importar cuán profundo sea, sin pasarlo explícitamente a través de accesorios.
+
+
+
+El problema de pasar accesorios
+Pasar accesorios es una excelente manera de canalizar datos explícitamente a través de su árbol de interfaz de usuario a los componentes que lo usan.
+
+Pero pasar accesorios puede volverse detallado e inconveniente cuando necesita pasar algún accesorio profundamente a través del árbol, o si muchos componentes necesitan el mismo accesorio. El ancestro común más cercano podría estar muy alejado de los componentes que necesitan datos, y elevar el estado tan alto puede conducir a una situación llamada "perforación de apoyo".
+
+
+
+Contexto: una alternativa a los accesorios de paso
+El contexto permite que un componente principal proporcione datos a todo el árbol debajo de él. Hay muchos usos para el contexto. Aquí hay un ejemplo. Considere este Headingcomponente que acepta un levelpara su tamaño:
+
+
+
+
+
+Pero, ¿cómo puede el <Heading>componente saber el nivel de su más cercano <Section>? Eso requeriría alguna forma para que un niño "pida" datos de algún lugar arriba en el árbol.
+
+No puedes hacerlo solo con accesorios. Aquí es donde entra en juego el contexto. Lo harás en tres pasos:
+
+PASOS
+
+Crea un contexto. (Puede llamarlo LevelContext, ya que es para el nivel de encabezado).
+Utilice ese contexto del componente que necesita los datos. ( Headingusará LevelContext.)
+Proporcione ese contexto del componente que especifica los datos. ( Sectionproporcionará LevelContext.)
+El contexto permite que un padre, ¡incluso uno distante!, proporcione algunos datos a todo el árbol dentro de él.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Resumen
+El contexto permite que un componente proporcione información a todo el árbol debajo de él.
+Para pasar contexto:
+Créelo y expórtelo con export const MyContext = createContext(defaultValue).
+Pásalo al useContext(MyContext)Hook para leerlo en cualquier componente hijo, sin importar cuán profundo sea.
+Envuelva a los niños <MyContext.Provider value={...}>para proporcionarlo de un padre.
+El contexto pasa a través de cualquier componente en el medio.
+El contexto le permite escribir componentes que "se adaptan a su entorno".
+Antes de usar el contexto, intente pasar accesorios o pasar JSX como children.
+
+
+
+
+Antes de usar el contexto
+¡El contexto es muy tentador de usar! Sin embargo, esto también significa que es demasiado fácil usarlo en exceso. El hecho de que necesite pasar algunos accesorios varios niveles de profundidad no significa que deba poner esa información en contexto.
+
+Aquí hay algunas alternativas que debe considerar antes de usar el contexto:
+
+Comience pasando accesorios. Si sus componentes no son triviales, no es inusual pasar una docena de accesorios a través de una docena de componentes. Puede parecer un trabajo arduo, pero deja muy claro qué componentes usan qué datos. La persona que mantiene su código se alegrará de que haya hecho explícito el flujo de datos con accesorios.
+Extraiga los componentes y páseles JSXchildren . Si pasa algunos datos a través de muchas capas de componentes intermedios que no usan esos datos (y solo los pasan más abajo), esto a menudo significa que olvidó extraer algunos componentes en el camino. Por ejemplo, tal vez pase accesorios de datos como postscomponentes visuales que no los usan directamente, como <Layout posts={posts} />. En su lugar, haga Layouttomar childrencomo accesorio y renderice <Layout><Posts posts={posts} /></Layout>. Esto reduce el número de capas entre el componente que especifica los datos y el que los necesita.
+Si ninguno de estos enfoques funciona bien para usted, considere el contexto.
+
+Casos de uso para el contexto
+Temas: si su aplicación le permite al usuario cambiar su apariencia (por ejemplo, modo oscuro), puede colocar un proveedor de contexto en la parte superior de su aplicación y usar ese contexto en los componentes que necesitan ajustar su aspecto visual.
+Cuenta actual: Es posible que muchos componentes necesiten conocer el usuario conectado actualmente. Ponerlo en contexto hace que sea conveniente leerlo en cualquier parte del árbol. Algunas aplicaciones también le permiten operar varias cuentas al mismo tiempo (por ejemplo, para dejar un comentario como un usuario diferente). En esos casos, puede ser conveniente incluir una parte de la interfaz de usuario en un proveedor anidado con un valor de cuenta actual diferente.
+Enrutamiento: la mayoría de las soluciones de enrutamiento utilizan el contexto internamente para mantener la ruta actual. Así es como cada enlace “sabe” si está activo o no. Si construye su propio enrutador, es posible que desee hacerlo también.
+Administrar el estado: a medida que crece su aplicación, es posible que termine con una gran cantidad de estado más cerca de la parte superior de su aplicación. Muchos componentes distantes a continuación pueden querer cambiarlo. Es común usar un reductor junto con el contexto para administrar el estado complejo y pasarlo a componentes distantes sin demasiados problemas.
+El contexto no se limita a valores estáticos. Si pasa un valor diferente en el próximo render, React actualizará todos los componentes leyéndolo a continuación. Esta es la razón por la cual el contexto se usa a menudo en combinación con el estado.
+
+En general, si los componentes distantes en diferentes partes del árbol necesitan alguna información, es una buena indicación de que el contexto lo ayudará.
+
+Resumen
+El contexto permite que un componente proporcione información a todo el árbol debajo de él.
+Para pasar contexto:
+Créelo y expórtelo con export const MyContext = createContext(defaultValue).
+Pásalo al useContext(MyContext)Hook para leerlo en cualquier componente hijo, sin importar cuán profundo sea.
+Envuelva a los niños <MyContext.Provider value={...}>para proporcionarlo de un padre.
+El contexto pasa a través de cualquier componente en el medio.
+El contexto le permite escribir componentes que "se adaptan a su entorno".
+Antes de usar el contexto, intente pasar accesorios o pasar JSX como children.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======================================================================================================================
+Composición vs Herencia  ==============> CHILDREN
+https://legacy.reactjs.org/docs/composition-vs-inheritance.html (documentacion ANtigua)
+
+Contención
+Algunos componentes no conocen a sus hijos antes de tiempo. Esto es especialmente común para componentes como Sidebaro Dialogque representan "cajas" genéricas.
+
+Recomendamos que tales componentes usen el childrenaccesorio especial para pasar elementos secundarios directamente a su salida:
+
+
+
+
+
+function FancyBorder(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
+}
+
+
+
+
+Esto permite que otros componentes les pasen niños arbitrarios anidando el JSX:
+
+function WelcomeDialog() {
+  return (
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        Welcome
+      </h1>
+      <p className="Dialog-message">
+        Thank you for visiting our spacecraft!
+      </p>
+    </FancyBorder>
+  );
+}
+
+
+
+
+
+Pruébelo en CodePen
+
+Cualquier cosa dentro de la <FancyBorder>etiqueta JSX se pasa al FancyBordercomponente como childrenaccesorio. Dado que FancyBorderse renderiza {props.children}dentro de un <div>, los elementos pasados ​​​​aparecen en la salida final.
+
+Si bien esto es menos común, a veces es posible que necesite varios "agujeros" en un componente. En tales casos, puede crear su propia convención en lugar de usar children:
+
+function SplitPane(props) {
+  return (
+    <div className="SplitPane">
+      <div className="SplitPane-left">
+        {props.left}
+      </div>
+      <div className="SplitPane-right">
+        {props.right}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <SplitPane
+      left={
+        <Contacts />
+      }
+      right={
+        <Chat />
+      } />
+  );
+}
+
+
+
+
+Entonces, ¿qué pasa con la herencia?
+En Facebook, usamos React en miles de componentes y no hemos encontrado ningún caso de uso en el que recomendaríamos crear jerarquías de herencia de componentes.
+
+Los accesorios y la composición le brindan toda la flexibilidad que necesita para personalizar la apariencia y el comportamiento de un componente de una manera explícita y segura. Recuerde que los componentes pueden aceptar accesorios arbitrarios, incluidos valores primitivos, elementos React o funciones.
+
+Si desea reutilizar la funcionalidad que no es de interfaz de usuario entre los componentes, le sugerimos que la extraiga en un módulo de JavaScript independiente. Los componentes pueden importarlo y usar esa función, objeto o clase, sin extenderlo.

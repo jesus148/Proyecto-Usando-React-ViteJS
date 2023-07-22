@@ -1,0 +1,4 @@
+
+
+
+esta carpeta assets solo es el contenedor de archivos para contenido dinamico como svg , jpg ,png .etc

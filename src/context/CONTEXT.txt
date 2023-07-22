@@ -1,0 +1,108 @@
+
+
+
+useContext
+useContextes un React Hook que le permite leer y suscribirse al contexto de su componente.
+
+const value = useContext(SomeContext)
+
+
+
+Referencia
+useContext(SomeContext) 
+Llame useContextal nivel superior de su componente para leer y suscribirse al contexto.
+
+import { useContext } from 'react';
+
+function MyComponent() {
+  const theme = useContext(ThemeContext);
+  // ...
+Vea más ejemplos a continuación.
+
+Parámetros
+SomeContext: El contexto que ha creado previamente con createContext. El contexto en sí no contiene la información, solo representa el tipo de información que puede proporcionar o leer de los componentes.
+
+
+Devoluciones
+useContextdevuelve el valor de contexto para el componente de llamada. Se determina como valuepasado al más cercano SomeContext.Providerpor encima del componente que llama en el árbol. Si no existe dicho proveedor, el valor devuelto será el que defaultValuehaya pasado createContextpara ese contexto. El valor devuelto siempre está actualizado. React vuelve a renderizar automáticamente los componentes que leen algún contexto si cambia.
+
+
+
+
+
+Advertencias
+useContext()la llamada en un componente no se ve afectada por los proveedores devueltos por el mismo componente. El correspondiente <Context.Provider> debe estar por encima del componente que realiza la useContext()llamada.
+React vuelve a renderizar automáticamente todos los elementos secundarios que usan un contexto particular a partir del proveedor que recibe un archivo value. Los valores anterior y siguiente se comparan con la Object.iscomparación. Omitir las re-renderizaciones con memono evita que los niños reciban valores de contexto nuevos.
+Si su sistema de compilación produce módulos duplicados en la salida (lo que puede suceder con los enlaces simbólicos), esto puede romper el contexto. Pasar algo a través del contexto solo funciona si SomeContextlo que usa para proporcionar contexto y SomeContextlo que usa para leerlo son exactamente el mismo objeto , según lo determinado por una ===comparación.
+
+
+
+
+Uso
+Pasar datos profundamente en el árbol
+Llame useContextal nivel superior de su componente para leer y suscribirse al contexto.
+
+import { useContext } from 'react';
+
+function Button() {
+  const theme = useContext(ThemeContext);
+  // ...
+useContextdevuelve el valor de contexto para el contexto que pasó. Para determinar el valor del contexto, React busca en el árbol de componentes y encuentra el proveedor de contexto más cercano arriba para ese contexto en particular.
+
+Para pasar contexto a un Button, envuélvalo o uno de sus componentes principales en el proveedor de contexto correspondiente:
+
+function MyPage() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Form />
+    </ThemeContext.Provider>
+  );
+}
+
+function Form() {
+  // ... renders buttons inside ...
+}
+No importa cuántas capas de componentes haya entre el proveedor y el Button. Cuando en Button cualquier lugar dentro de Formlas llamadas useContext(ThemeContext), se recibirá "dark"como el valor.
+
+Trampa
+useContext()siempre busca el proveedor más cercano por encima del componente que lo llama. Busca hacia arriba y no tiene en cuenta los proveedores en el componente desde el que está llamando useContext().
+
+
+
+
+
+
+Actualización de datos pasados ​​a través de contexto
+A menudo, querrá que el contexto cambie con el tiempo. Para actualizar el contexto, combínelo con el estado. Declare una variable de estado en el componente principal y pase el estado actual como valor de contexto al proveedor.
+
+function MyPage() {
+  const [theme, setTheme] = useState('dark');
+  return (
+    <ThemeContext.Provider value={theme}>
+      <Form />
+      <Button onClick={() => {
+        setTheme('light');
+      }}>
+        Switch to light theme
+      </Button>
+    </ThemeContext.Provider>
+  );
+}
+
+
+Ahora cualquier Buttoninterior del proveedor recibirá el themevalor actual. Si llama setThemepara actualizar el themevalor que pasa al proveedor, todos Buttonlos componentes se volverán a representar con el nuevo 'light'valor.
+
+
+
+
+
+
+Especificación de un valor predeterminado alternativo
+Si React no puede encontrar ningún proveedor de ese contexto en particular en el árbol principal, el valor de contexto devuelto por useContext()será igual al valor predeterminado que especificó cuando creó ese contexto :
+
+const ThemeContext = createContext(null);
+El valor predeterminado nunca cambia . Si desea actualizar el contexto, utilícelo con el estado como se describe anteriormente.
+
+A menudo, en lugar de null, hay un valor más significativo que puede usar como valor predeterminado, por ejemplo:
+
+const ThemeContext = createContext('light');

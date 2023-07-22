@@ -1,0 +1,100 @@
+
+
+
+MODULO DE CSS
+
+es un framework css  parecido a css
+es parecido a boostrap con clases
+reduce el codigo de css
+PARA QUE SE VEA UN POCO Y SE ENTIenDA MEJOR
+INSTALANDO 1 MODULO ADICIONAL
+ademas en tailwind puede personalizar esos estilos css mediante las clases , osea usar hoover , before ,etc dentro de los 
+className osea donde pones las clases
+
+
+
+
+USANDO TAILWIND PARA VITEJS
+
+1. //entra a ese enlace 
+//o entra  Tailwind CSS documentacion >  instalattion > framework-guides > vite
+https://tailwindcss.com/docs/installation/framework-guides
+
+
+
+
+
+2 . salir del servidor en la terminal del vscode o cmd (contro + c) OJO 
+
+
+
+3.    pon ese comnado en la terminal dentro de la carpeta creada con vite
+con esto descarga los modulos que nesecita para funcionar 
+con esto usamos modulos en reactjs 
+       npm install -D tailwindcss postcss autoprefixer  
+
+
+4. luego poner este otro comando en la terminal
+  con esto crea 1 archivo de configuracion en nuestro proyecto( postcss , tailwind) en la estructura
+   npx tailwindcss init -p      
+
+
+
+5. 
+
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+> de todo eso solo copia el 
+content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+
+  
+
+
+6. dirigite al al archivo tailwind.config.css(en la estructura)
+
+    remplaza eso vacio por el paso 5 
+ content: [  ],
+
+
+
+ 7.   copia eso 
+
+ @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+8. dirigite al index.css 
+   y pegalo ahi al incio
+
+   y con esto ya tienes tailwind ya puedes utilizarlo
+
+
+
+
+
+
+
+9. con esto cuando inicies tu aplicacion con react , se reseta todo el estilo 
+y asi comienzas desde cero
+
+
+
+10. recomendable descargar esta extension
+ Tailwind CSS IntelliSense 
+ con esto autocompleta las clases de estilos y te ayuda mas
+ ademas si no sabes que significa 1 clase te ayudara con la definicion
