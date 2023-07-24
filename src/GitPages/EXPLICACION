@@ -20,7 +20,7 @@ Antes de comenzar a describir los pasos; debes tener en cuenta que necesitas ten
 
 
 
-
+--- PASOS IMPORTANTES
 
 1. primero cierra tu app osea tu servidor con control + C en la consola
     - en la consola o el cmd 
@@ -50,7 +50,11 @@ ose subir todo este codigo de este proyecto en el repositorio mio
    -git push origin master (con eso sube todo el codigo)
 
 
-USANDO GITPAGES------------------
+
+
+
+
+USANDO GITPAGES---------------------------------------------------------------------------
 
 8. luego de subir todo nuestro codigo al repositroio 
 dirigete https://www.npmjs.com/package/gh-pages 
@@ -58,7 +62,7 @@ o buscar github pages npm
      - esto ayuda a desplegar la aplicacion que ya esta en el github basicamente son comandos
      osea son modulos que hace + facil el trabajo de subir o desplegar son como modulos 
      2 FORMA (AVERIGUAR +)
-     otra forma de subir mediante gitpages es conifgurando como el netlify 
+     otra forma de subir mediante gitpages es conifgurando como en el netlify 
 
 
 9. iniciar con l 1 comando ya sea en la consola de vscode o el cmd
@@ -72,11 +76,13 @@ o buscar github pages npm
        },
 
 
-10. como estamos usando vitejs (esta herrmienta de fronten tiene una herramienta para poder desplegar hacia gitpages)
+10. SOLO SI USAMOS VITEJS OJO
+    como estamos usando vitejs (esta herrmienta de fronten tiene una herramienta para poder desplegar hacia gitpages)
     - buscar en google(vitejs gh pages)
     - o redirigite aqui (https://vitejs.dev/guide/static-deploy.html) 
         - ahi buscar deplying a static site (ver lado izquierdo)
         - donde dice on this page lyego  situate o buscar   github pages( lado derecho )
+        - o mas facil dirigite aqui https://vitejs.dev/guide/static-deploy.html#github-pages
 
 
     -- encontras esto 
@@ -85,7 +91,7 @@ o buscar github pages npm
 -- esto para el deploy del perfil de tu git
 If you are deploying to https://<USERNAME>.github.io/, you can omit base as it defaults to '/'.
 
---deploy a traves de un repositorio 
+--deploy a traves de un repositorio (es el mas usado y lo que queremos)
 If you are deploying to https://<USERNAME>.github.io/<REPO>/, for example your repository is at https://github.com/<USERNAME>/<REPO>, then set base to '/<REPO>/'.
 
 
@@ -93,16 +99,17 @@ If you are deploying to https://<USERNAME>.github.io/<REPO>/, for example your r
 11. luego dirigite a vite.config.js
    export default defineConfig({
    plugins: [react()],
-   base : '/Proyecto-Usando-React-ViteJS/' (esto le agregas es la base no el url de tu repo)
+  base : '/Proyecto-Usando-React-ViteJS/',                     (esto le agregas ,es la base no el url de tu repo )
+                                                                    poner dentro de /......./ 
    })
 
-
+ 
   como saber la base :
   url de repo 
   https://github.com/jesus148/Proyecto-Usando-React-ViteJS.git
-       - la base seria /Proyecto-Usando-React-ViteJS
+       - la base seria /Proyecto-Usando-React-ViteJS  (es mejor para mi)
        osea el nombre del repositorio
-       o tambien puedes poner toda la URL (creo que es mejor)
+       o tambien puedes poner toda la URL (creo que es mejor a veces,  probar ahi , a veces sale error)
 
 
 12. dirigite a tu github la pagina de tu repositorio qu quieres subir
@@ -112,23 +119,75 @@ If you are deploying to https://<USERNAME>.github.io/<REPO>/, for example your r
    - saldra bastante codigo todo ese codigo debe remplazarse   
    - con este codigo copia todo eso y ponerlo 
      ir a esta url (https://vitejs.dev/guide/static-deploy.html#github-pages)
+         COPIAR TODO ESTO
        donde dice # Simple workflow for deploying static content to GitHub Pages
                    .
                    .
                    . etc     
     - luego debes guardas los cambios a traves de 1 commit
-       commit changes                
+       commit new file                
 
  13. te saldra el commit realizado
      ademas te mostrara lo qu ehas añadido 
-      saldra la carpeta > workflows      
+      saldra la carpeta > workflows  
+      (esto instala las dependencias , esto es basicamente un deploy de la carpeta dist )    
       jekyll-gh-pages.yml (dar clik ahi)
 
-14.debemos modificar ese archivo poner edit 
+14.debemos modificar ese archivo poner edit , OSEA MODOFICAR EL CODIGO Q HEMOS SUBIDO en el jekyll-gh-pages.ym
       - y cambiar la rama en ciertos casos podria ser main o master ( debes ver con el gitbush o tambien con el vscode 
       abajo del icono de configuracion)
+      
+
+      - abajo del # Simple workflow for deploying static content to GitHub Pages
+    name: Deploy static content to Pages
+
+    on:
+    # Runs on pushes targeting the default branch
+
 
       -  push:
-      branches: ['master']  (hemos cambiado por master en este caso)
+      branches: ['master']  (hemos cambiado por master en este caso depende ya sea main o master)
 
       - luego hacer 1 commit para guardar cambios 
+
+      - con todo esto ya esta agregado ese codigo subido en nuestro github verificar
+
+
+
+
+
+
+ 15.       CON LOS CAMBIOS REALIZADOS EN package.json y el vite.config.js (DEBEMOS SUBIRLO)
+       - git add . (arega todo)
+       - git commit ( commit)
+       - git push (OJO A QUI SALDRA ERROR pq modificamos en el github al modificar y agregar el master  PASO 12 Y 14)
+
+       - debemos hacer entonces 
+       - git pull 
+       - luego volver hacer 
+       - git push 
+       - OJO SI SALE ERROR(BUSCAR GOOGLEA no seas vago e investiga sale por problemas en las ramas ya sea master o main)
+       - y con esto ya esta todo
+
+
+
+16.        dirigite a tu repositorio de github
+          - Actions (a lado del pull requests)
+                y ahi saldra que iconos verdes significa q estas haciendo deploy(subir tu aplicacion al hosting) 
+
+                - ademas dentro sale deployments(para ver tu sitio web subido al hosting) (1 forma) demora un poco
+
+
+
+17. PARA VER MI SITIO WEB YA EN EL HOSTING
+           
+
+           dirigiti a tu github , en tu repositorio 
+              - settings
+                  - pages 
+                      - GitHub Pages 
+                        GitHub Pages is designed to host your personal, organization, or project pages from a GitHub repository.
+                         ABAJO DE ESTO 
+                      - sale un link 
+                         - visit site(  Y AHI ESTA)    demora un poco
+
