@@ -560,7 +560,7 @@ onChange={(e) => setDescripcion(e.target.value)}
 {/* la idea siempre en estilos es que este dentro de un contendor para centrar sobre todo los botones 
 usamos el padding para aumentar el width tambien sirve */}
 <button className='bg-lime-500 px-16 py-2 text-slate-950  hover:bg-lime-700 font-bold  rounded '> Guardar</button>
-<h1>s</h1>
+
 </div>
 
 
